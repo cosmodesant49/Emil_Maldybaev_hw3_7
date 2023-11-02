@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.geeks.emil_maldybaev_hw7.databinding.FragmentDownBinding
 import com.geeks.emil_maldybaev_hw7.databinding.ItemMusicBinding
 
-class MusicAdapter(val musicList: List  <Music>):RecyclerView.Adapter<MusicAdapter.ViewHolder>() {
+class MusicAdapter(val musicList: List  <Music>, val onClick: (music: Music)-> Unit):RecyclerView.Adapter<MusicAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,6 +27,10 @@ class MusicAdapter(val musicList: List  <Music>):RecyclerView.Adapter<MusicAdapt
             binding.tvSong.text = music.song
             binding.tvAutor.text = music.autor
             binding.tvCounter.text = music.counter
+
+            itemView.setOnClickListener {
+                onClick(music)
+            }
         }
     }
 }

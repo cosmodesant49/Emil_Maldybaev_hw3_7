@@ -1,5 +1,6 @@
 package com.geeks.emil_maldybaev_hw7
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,7 +37,12 @@ class DownFragment : Fragment() {
     }
 
     private fun initAdapter() {
-        val adapter = MusicAdapter(musicList)
+        val adapter = MusicAdapter(musicList, this::onClick)
         binding.rvMusic.adapter = adapter
+    }
+    private fun onClick(music: Music) {
+        val intent = Intent(requireActivity(), SecondActivity::class.java)
+        intent.putExtra("songName", music.song)
+        startActivity(intent)
     }
 }
